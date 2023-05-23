@@ -1,0 +1,30 @@
+public class 終極密碼測試 {
+    public static void main(String[] args){
+        int max = 100;  //最大值
+        int min = 0; //最小值
+        int a =(int)(Math.random()*100+1); //隨機數
+        int b = -1; //宣告值，導入迴圈
+        String c = " "; //用宣告方式減少print語句使用次數
+        
+        do{
+            System.out.print("請輸入符合範圍("+min+"~"+max+")的數字:");
+            java.util.Scanner s = new java.util.Scanner(System.in);
+            b = s.nextInt();
+        
+            if(b <= min || b >= max){
+                c="不符合規範";
+            }else if(b<a){
+                min = b;
+                c="有點太小了，再一次!!";
+            }else if(b>a){
+                max=b;
+                c="有點太大了，再一次!!";
+            }
+            System.out.println(c);
+        }while(b != a);
+        
+        System.out.println("賓果!答對囉~~");
+               
+        
+    }
+}
