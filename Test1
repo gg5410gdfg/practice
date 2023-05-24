@@ -1,0 +1,55 @@
+public class Test1 {
+    public static void main(String[] args) {
+//      計算1000內不能被7整除的數之和
+//      int sum = 0;
+//      for(int i=1;i<=1000;i++){
+//          if( i % 7 != 0){
+//          sum += i;
+//          }
+//      }
+//      System.out.println(sum);
+
+//      計算1+2-3+4-5+6-7.....+100的和
+//        int sum = 0;
+//        for(int a = 2 ; a<= 100 ; a += 2 ){
+//            sum += a;
+//        }
+//        sum += 1;
+//        for(int b = 3 ; b <= 100 ; b += 2){
+//            sum -= b;
+//        }
+//        System.out.println(sum);
+
+java.util.Scanner s = new java.util.Scanner(System.in);
+
+//輸入一個正整數，計算他的乘階
+//System.out.print("請輸入一個正整數:");
+//int num1 = s.nextInt();
+//int sum = 1;
+//
+//for(int a = 1 ;  a <= num1 ; a++){
+//    sum *= a;
+//    System.out.print(a);
+//    if(a == num1){
+//    break;
+//    }
+//    System.out.print("*");
+//    }
+//System.out.print("="+sum);
+
+
+//判斷輸入的數字是否為質數
+String c = "他是質數";
+
+System.out.print("請輸入一個正整數:");
+int a = s.nextInt();
+for(int b = 2 ; b < a; b++){
+    if(a % b == 0){
+    c = "不是質數";
+    break;
+    }
+}
+System.out.println(c);
+
+    }   
+}
