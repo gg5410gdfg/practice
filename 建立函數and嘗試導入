@@ -1,0 +1,33 @@
+public class 方法定義 {
+        public static void main(String args[]){
+             int c = 方法定義.質數min(7);
+             System.out.println(c);
+             
+             int d = 方法定義.階乘(5);
+             System.out.println(d);
+           
+        }
+        
+        public static int 階乘(int a){ //輸出a!
+            int sum = 1;
+            for(;a>1;a--){
+                sum*= a;
+            }
+            return sum;
+        }
+                
+                
+         public static int 質數min(int a){ //輸出大於a的最小的質數
+             boolean 質數 = false;
+             a++;
+             for(;true;a++){   
+                for(int i = 2; i < a ; i++){
+                    if(a % i == 0){
+                        break;
+                    }else if(a % i != 0 && i == a-1){
+                        return a;
+                    }
+                }
+            }
+          }
+}
