@@ -1,0 +1,14 @@
+public class 方法遞迴 {
+    public static void main(String[] args){
+
+        System.out.println(方法遞迴.f(6));
+    }
+    
+    public static int f(int n ){ //用方法遞迴計算n的乘階
+        if( n == 1){
+        return 1;
+        }
+        
+        return n*f(n-1);
+    }
+}
