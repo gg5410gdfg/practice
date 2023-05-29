@@ -1,0 +1,54 @@
+public class Test4 {
+    public static void main(String[] args){
+    Book b1 = new Book("sao",195);
+    b1.setPageNum(150);
+    b1.detail();
+    }
+}
+
+class Book{
+    private String title;
+    private int pageNum;
+    //無參構造方法
+    public Book(){
+    }
+    //構造方法(new對象時使用)
+    //頁數不能小於200，不然出警告訊息，並賦予預設值200
+    public Book(String title,int pageNum){
+        this.title = title;
+        if( pageNum >= 200){
+            this.pageNum = pageNum;
+            detail();
+        }else{
+            System.out.println("不符合最小頁數，給予預設值200");
+            this.pageNum = 200;
+        }
+    }
+    //set與get PageNum(修改內容時使用)
+    public void setPageNum(int pageNum){
+        if( pageNum >= 200){
+            this.pageNum = pageNum;
+        }else{
+            System.out.println("最小頁數200，請重新修改");
+            pageNum = 200;
+        }
+    }
+    
+    public int getPageNum(){
+        return pageNum;
+    }
+    //set與get Title
+    public void setTitle(String title){
+        this.title = title;
+    }
+    
+    public String getTitle(){
+        return title;
+    }
+    
+    public void detail(){
+    System.out.println("教材名稱:" + title);
+    System.out.println("教材頁數:" + pageNum);
+    }
+    
+}
