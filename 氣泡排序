@@ -1,0 +1,18 @@
+//氣泡排序
+class Array{
+    public static int[] list(int[] a){
+        int a1 = a.length-1;
+        for(int i = 1; i <= a.length; ++i ){
+            for(int e = 0; e < a1; ++e){
+                int[] b = {0};
+                if(a[e] >= a[e+1]){
+                    b[0]=a[e+1];
+                    a[e+1] = a[e];
+                    a[e] = b[0];
+                }
+                a1 -= 1;  
+            }
+        }
+        return a;
+    }
+}
