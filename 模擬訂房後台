@@ -1,0 +1,175 @@
+import java.util.Scanner;
+
+public class 酒店系統 {
+    public static void main(String[] args){
+        Hotel h = new Hotel();
+        Scanner s = new Scanner(System.in);
+//        System.out.println(h.room[1][1]);
+        while(true){
+            System.out.println("請選擇您的操作，輸入1訂房，輸入2退房，輸入3查詢單房狀態，輸入4查詢全房狀態:");
+            int a = s.nextInt();
+            int b;//儲存房號
+            if(a == 1){
+                System.out.println("現在空房:");
+                h.clearRm();
+                System.out.println("");
+                do{
+                    System.out.println("請輸入空房房號");
+                    b = s.nextInt();
+                }while(h.check(b));
+                System.out.println("請輸入姓名");
+                String d = s.next();
+                h.order(b,d);
+            }
+             if(a == 2){
+                do{
+                    System.out.println("請輸入要退房的房號");
+                    b = s.nextInt();
+                }while(!h.check(b));
+                h.unSub(b);
+             }
+             if(a == 3){
+                System.out.println("請輸入房號");
+                b = s.nextInt();
+                h.search(b);
+             }
+             if(a == 4){
+                 h.read();
+             }
+        }
+    }
+}
+    
+
+
+class Hotel{
+    private String name;
+    private Room[][] room;
+    //無參構造，每個二為中的一維用循環new一個房間
+    public Hotel(){
+        room = new Room[3][5];
+        for(int floor = 0; floor < room.length; ++floor){
+            for(int rm = 0; rm < room[floor].length; ++rm){
+                int no = (floor+1)*100+rm+1;
+                if(floor == 0)room[floor][rm] = new Room(no, "單人房", false);
+                else if(floor == 1)room[floor][rm] = new Room(no, "雙人房", false);
+                else room[floor][rm] = new Room(no, "豪華套房", false);
+            }
+        }
+    }
+
+    //酒店名(不重要
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+
+    public Room[][] getRoom(){
+        return room;
+    }
+    
+    //單獨查找個別房間
+    public void search(int i){
+        System.out.println(room[(i%100)-1][(i%100)-1]);
+    }
+    //調閱整個二維陣列
+    public void read(){
+        for(int floor = 0; floor < this.room.length; ++floor){
+            for(int rm = 0; rm < this.room[floor].length; ++rm){
+                System.out.println(room[floor][rm]);
+            }
+        }
+    }
+    //核對房間是否為空
+    public boolean check(int i){
+         int a = i/100;
+         int b = i-a*100;
+         return room[a-1][b-1].getStatus();
+    }
+    //訂房
+    public void order(int i,String name){
+         change(i).setName(name);
+         change(i).setStatus(true);
+         System.out.println( change(i).getNo()+ change(i).getName()+"已成功訂房!");
+    }
+    //退房
+    public void unSub(int i){
+        change(i).setName(null);
+        change(i).setStatus(false);
+        System.out.println( change(i).getNo()+ change(i).getName()+"已成功退房!");
+    }
+    //房號轉換
+    public Room change(int i){
+        int a = i/100;
+        int b = i-a*100;
+        Room r1 = room[a-1][b-1];
+        return r1;
+    }
+    //找空房
+    public void clearRm(){
+        for(int floor = 0; floor < this.room.length; ++floor){
+            for(int rm = 0; rm < this.room[floor].length; ++rm){
+                if(!room[floor][rm].getStatus())System.out.print("["+room[floor][rm].getNo()+"]");
+            }
+        }
+    }
+    
+}
+
+
+
+
+class Room{
+    private int no;
+    private String style;
+    private boolean status;
+    private String name;
+    
+    public Room(int no){
+    }
+    public Room(int no,String style, boolean status){
+        this.no = no;
+        this.style = style;
+        this.status = status;
+    }
+    
+    public void setNo(int no){
+        this.no = no;
+    }
+    public int getNo(){
+        return no;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setStyle(String style){
+        this.style = style;
+    }
+    public String getStyle(){
+        return style;
+    }
+    public void setStatus(boolean status){
+        this.status = status;
+    }
+    public boolean getStatus(){
+        return status;
+    }
+    
+    public String toString(){
+        if(status == true)return this.no+","+this.style+","+this.name;
+        return this.no+","+this.style+", 空房";
+    }
+    
+     public boolean equals(Object obj){
+         if(obj == null || !(obj instanceof Room))return false;
+         if(obj == this)return true;
+         Room r1 = (Room) obj;
+         return r1.getNo() == this.getNo();
+     }
+    
+}
